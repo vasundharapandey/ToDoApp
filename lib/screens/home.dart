@@ -26,15 +26,16 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: tdbgcolor,
       appBar: _buildAppbar(),
-      body: Stack(
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-            child: Column(
-              children: [
-                searchBox(),
-                Expanded(
-                  child: ListView(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              child: Column(
+                children: [
+                  searchBox(),
+                  ListView(
+                    shrinkWrap: true,
                     children: [
                       Container(
                         margin: EdgeInsets.only(top: 50, bottom: 20),
@@ -52,59 +53,60 @@ class _HomeState extends State<Home> {
                         ),
                     ],
                   ),
-                )
-              ],
+                ],
+              ),
             ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: 20, right: 20, left: 20),
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey,
-                            offset: Offset(0.0, 0.0),
-                            blurRadius: 10.0,
-                            spreadRadius: 0.0,
-                          ),
-                        ],
-                        borderRadius: BorderRadius.circular(10)),
-                    child: TextField(
-                      controller: _todoController,
-                      decoration: InputDecoration(
-                        hintText: "Add new todo item",
-                        border: InputBorder.none,
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: 20, right: 20, left: 20),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              offset: Offset(0.0, 0.0),
+                              blurRadius: 10.0,
+                              spreadRadius: 0.0,
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(10)),
+                      child: TextField(
+                        controller: _todoController,
+                        decoration: InputDecoration(
+                          hintText: "Add new todo item",
+                          border: InputBorder.none,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(bottom: 20, right: 20),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      _addToDoitem(_todoController.text);
-                    },
-                    child: Text(
-                      '+',
-                      style: TextStyle(fontSize: 40),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: tdblue,
-                      minimumSize: Size(60, 60),
-                      elevation: 10,
+                  Container(
+                    margin: EdgeInsets.only(bottom: 20, right: 20),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        _addToDoitem(_todoController.text);
+                      },
+                      child: Text(
+                        '+',
+                        style: TextStyle(fontSize: 40),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        primary: tdblue,
+                        minimumSize: Size(60, 60),
+                        elevation: 10,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          )
-        ],
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
